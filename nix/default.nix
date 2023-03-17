@@ -7,7 +7,6 @@ with pkgs;
 buildEnv {
   name = "builder";
   paths = [
-    python310
-    poetry
+    python310Full
   ];
 }
