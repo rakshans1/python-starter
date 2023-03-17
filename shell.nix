@@ -1,16 +1,16 @@
 { sources ? import ./nix/sources.nix
-, pkgs ? import <nixpkgs> { overlays = [ (import ./nix/niv-overlay.nix) ]; }
+, pkgs ? import sources.nixpkgs { }
 }:
 
 with pkgs;
 let
   inherit (lib) optional optionals;
-   basePackages = [
+  basePackages = [
     (import ./nix/default.nix { inherit pkgs; })
     pkgs.niv
   ];
 
-  inputs =  basePackages ++ lib.optionals stdenv.isLinux [ inotify-tools ]
+  inputs = basePackages ++ lib.optionals stdenv.isLinux [ inotify-tools ]
     ++ lib.optionals stdenv.isDarwin
     (with darwin.apple_sdk.frameworks; [ CoreFoundation CoreServices ]);
 
@@ -35,7 +35,8 @@ let
     fi
   '';
 
-in mkShell {
+in
+mkShell {
   buildInputs = inputs;
   shellHook = hooks;
 
