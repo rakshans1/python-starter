@@ -11,7 +11,7 @@ Run `direnv allow`
 
 ## 🚧 Dependencies
 
-Every runtime dependencies are defined in the `shell.nix` file.
+Every runtime dependencies are defined in the `flake.nix` file.
 
-- python (`~> 3.10.5`)
-- poetry (`~> 1.1.14`)
+- python (`~> 3.12.2`)
+- poetry (`~> 1.8.2`)
