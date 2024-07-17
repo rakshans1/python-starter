@@ -29,7 +29,7 @@
         devShells = {
           default = pkgs.mkShell {
             packages = with pkgs;  [
-              python312Full
+              python313Full
               poetry
             ] ++ linuxDeps ++ darwinDeps;
             shellHook = ''
