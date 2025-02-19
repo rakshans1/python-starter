@@ -30,12 +30,10 @@
           default = pkgs.mkShell {
             packages = with pkgs;  [
               python313Full
-              poetry
+              uv
             ] ++ linuxDeps ++ darwinDeps;
             shellHook = ''
               export LANG=C.UTF-8
-
-              export POETRY_HOME=$PWD/.poetry
             '';
           };
         };
