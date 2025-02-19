@@ -26,4 +26,4 @@ jobs:
       - name: Run tests
         run: |
           nix develop -c python --version
-          nix develop -c poetry --version
+          nix develop -c uv --version
