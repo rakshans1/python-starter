@@ -13,5 +13,5 @@ Run `direnv allow`
 
 Every runtime dependencies are defined in the `flake.nix` file.
 
-- python (`~> 3.13.0a3`)
-- uv (`~> 0.6.0`)
+- python (`~> 3.14.0`)
+- uv (`~> 0.9.7)

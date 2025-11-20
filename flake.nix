@@ -6,8 +6,14 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -18,24 +24,24 @@
         inherit (pkgs.stdenv) isDarwin isLinux;
 
         linuxDeps = optionals isLinux [ inotify-tools ];
-        darwinDeps = optionals isDarwin [ terminal-notifier ]
-          ++ (with pkgs.darwin.apple_sdk.frameworks; optionals isDarwin [
-          CoreFoundation
-          CoreServices
-        ]);
-
+        darwinDeps = optionals isDarwin [ terminal-notifier ];
       in
       {
         devShells = {
           default = pkgs.mkShell {
-            packages = with pkgs;  [
-              python313Full
-              uv
-            ] ++ linuxDeps ++ darwinDeps;
+            packages =
+              with pkgs;
+              [
+                python314
+                uv
+              ]
+              ++ linuxDeps
+              ++ darwinDeps;
             shellHook = ''
               export LANG=C.UTF-8
             '';
           };
         };
-      });
+      }
+    );
 }
